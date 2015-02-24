@@ -1,0 +1,58 @@
+public static void main(String[] args) {
+		String str = "abcdefghijklmn124345678!@#$%^&*opqrstuvwxyz!*abcdefghijklmnabcdefghijklmnopqr944stuvwxyz";
+		String pp = smallestSubstringContainingTheAlphabet(str);
+		
+		System.out.println(pp);
+
+	}
+
+	public static String smallestSubstringContainingTheAlphabet(String str){
+		ArrayList<Character> alphabet = new ArrayList<Character>();
+				
+		String result="";
+		String lowerCase = str.toLowerCase();
+		char symbol;
+		boolean flag = false;
+		int count=0;
+		int start=0;
+		int from=0;
+		int to=0;
+		boolean begin=true;
+		
+		for (int i = 0; i <lowerCase.length();i++){
+			count = 0 ;
+			{for(char c1 = 97; c1<123;c1++){
+				alphabet.add(c1);
+				}
+			}
+			flag = false;
+			
+			for (int j=i;j<lowerCase.length() ;j++){
+				start=i;
+				symbol=lowerCase.charAt(j);
+				
+				for ( int p =0; p <alphabet.size();p++){
+					
+					if(symbol==alphabet.get(p)){
+						alphabet.remove(p);
+					}
+				}
+				count++;
+				if (alphabet.isEmpty()){
+				flag = true;
+				if (begin) {from=start; to=count; begin=false;}
+				break;
+				}	
+			}
+		
+			if (count<to&&flag) {
+				from=start; to=count;
+			}
+					
+		}
+
+		result = str.substring(from, from+to);
+			return result;
+
+		
+	}
