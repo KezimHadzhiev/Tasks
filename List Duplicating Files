@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+		String dir = "C:\\Users\\Kezim\\Downloads";
+		listDuplicatingFiles(dir);
+
+	}
+
+	public static void listDuplicatingFiles(String dir){
+		
+		File file = new File(dir);
+		if (file.exists()){
+			if (file.isDirectory()){ 
+				String[] directory = file.list();
+				System.out.println("Directory contents:");
+				for (String directoryName : directory){
+				System.out.println(directoryName);
+				listDuplicatingFiles(dir+"\\"+directoryName);
+			}
+		}
+		}
+		else {
+			System.out.println("Directory is not exist!!");
+		}
+		
+		
+	}
